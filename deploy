@@ -1,0 +1,17 @@
+#!/bin/bash
+
+source functions
+
+echo ""
+echo_info "Migrar os bancos..."
+
+echo ""
+echo_info "... cmdb"
+./cmdb/deploy
+
+echo ""
+echo_info "Reiniciando o mundo novamente"
+./restart
+
+echo ""
+echo_success "Tudo pronto"

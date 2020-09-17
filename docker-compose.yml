@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+
+  proxy:
+    image: nginx:1.17.8-alpine
+    ports:
+      - "${NGINX_EXTERNAL_PORT}:80"
+    volumes:
+      - "../confs/proxy:/etc/nginx/conf.d"
+
+  db:
+    image: postgres:12.1-alpine
+    env_file:
+      - ../confs/db.env
+    ports:
+      - "${POSTGRES_EXTERNAL_PORT}:5432"
+    volumes:
+      - "../volumes/pgdata:/var/lib/postgresql/data"
+      - "./db/initdb_scripts:/docker-entrypoint-initdb.d"
+
+  redis:
+    image: redis:5.0-alpine
+    command: redis-server --requirepass redis_password
+
+  pre_matricula:
+    image: 'ifrn/suap_ead_base:1.5.14'
+    ports:
+      - "7001:8000"
+    env_file:
+      - ../confs/db.env
+      - ../confs/suap_ead.env
+      - ../confs/pre_matricula.env
+    volumes:
+      - '../apps/pre_matricula:/apps/app'
+      - '../libs/:/libs/'
+      - "../volumes/media/pre_matricula:/media/sead/pre_matricula"
