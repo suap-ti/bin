@@ -3,9 +3,9 @@ source functions
 
 
 if [[ `docker container ls | grep sead_{$SERVICE_NAME}_1` ]]; then 
-  ./$SERVICE_NAME/exec ./manage.sh $@
+  ./$SERVICE_NAME/exec ./manage.py $@
 else
-  ./$SERVICE_NAME/run ./manage.sh $@
+  ./$SERVICE_NAME/run ./manage.py $@
 fi
 
 
