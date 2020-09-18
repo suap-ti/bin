@@ -30,26 +30,3 @@ echo_info() {
 echo_success() {
   echo ${@:3} -e "$GREEN_COLOR SUCC: $(date +\"%F\ %T\") $1$NO_COLOR"
 }
-
-clone_repository() {
-  source=$1
-  destin=$2
-  branch=$3
-  if [ -d "$destin" ]; then
-    echo_info "Skipping $destin" 
-  else
-    echo_info "Cloning to $destin" 
-    git clone $source $destin
-  fi
-  if [ "$branch" ]; then
-    git checkout -b $branch origin/$branch
-  fi
-  cd $SEAD_HOME/bin
-}
-
-
-clone_repositories() {
-  echo_info "Cloning repositories"
-
-  clone_repository git@github.com:suap-ti/cmdb.git $SEAD_HOME/apps/cmdb
-}

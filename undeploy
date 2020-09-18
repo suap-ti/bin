@@ -2,17 +2,15 @@
 source functions
 
 echo_info "Reset confs"
-rm -rf $SEAD_HOME/confs
-mkdir $SEAD_HOME/confs
-cp -r $SEAD_HOME/bin/confs_examples/* $SEAD_HOME/confs/
+rm -rf ../confs
+mkdir ../confs
+cp -r ../bin/confs_examples/* ../confs/
 
 echo_info "Stop the world"
 ./down
 
 echo_info "Reset volumes"
-sudo rm -rf $SEAD_HOME/volumes
-
-clone_repositories
+sudo rm -rf ../volumes
 
 # echo_info "Prune system"
 # docker system prune -a
