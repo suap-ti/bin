@@ -10,7 +10,7 @@ services:
       - "./db/initdb_scripts:/docker-entrypoint-initdb.d"
 
   cmdb:
-    image: 'ifrn/suap_ti:latest'
+    image: 'ifrn/suap_ti:1.0.2'
     ports:
       - "7201:8000"
     env_file:
